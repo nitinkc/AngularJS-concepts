@@ -76,24 +76,61 @@
                         <label>Enter name</label>
                         <!-- Two Way Binding : Binding input ot handle-->
                         <input type="text" ng-model="handle"/>
+                     <!-- Interpolating it with function/variable -->
+                    <h4> You Entered - {{ lowercaseHandle() }}</h4>
+                  </div>
                     
-                    <!-- Error Checking ng-if testing                       -->
-                     <div class="alert" ng-if="handle.length !== characters">
-                        Must be at max 5 characters!!
-                    </div>
-
+                    <!--  ******************COMMON DIRECTIVES **********************************-->
+                    <hr>
+                        
+                    <h3>Common Directives </h3>
+                    <div> 
+                        <label>Enter some Text</label>
+                        <!-- Two Way Binding : Binding input ot handle-->
+                        <input type="text" ng-model="newHandle"/>
+                    
+                        <!-- Error Checking ng-if testing  if the number of characters are less than 5   -->
+                         <div class="alert alert-warning" ng-if="newHandle.length !== characters">
+                            [EG - ng-if] -Must be at max 5 characters !!
+                        </div>
+                        
+                        <!--   NG-SHOWdoes not remove from DOM, but hides          -->
+                         <div class="alert alert-warning" ng-show="newHandle.length !== characters">
+                           [EG - ng-show] Must be at max 5 characters!!
+                        </div>
+                        
+                        <!--   NG-HIDE does not remove from DOM, but hides          -->
+                         <div class="alert alert-success" ng-hide="newHandle.length === characters">
+                           [EG - ng-hide] It is 5 charactesr long!!
+                        </div>
+                        
+                          <!--   All in one Line using ng-class :
+                                Applying a class according to a conditiona dn Displaying as div accordingly
+                            -->
+                         <div class="alert" ng-class="{'alert-info' : newHandle.length < characters, 
+                                                      'alert-danger' : newHandle.length > characters, 
+                                                      'alert-success' : newHandle.length === characters}" 
+                              ng-show="newHandle.length !== characters">
+                             
+                            <!--   Show a different message ONLE ONE DIV WILL SHOW-->
+                             <div ng-show="newHandle.length < characters">
+                                 [EG - ng-class WITH ng-show for DIV] Less than 5 characters!!
+                             </div>
+                             
+                             <div ng-show="newHandle.length === characters">
+                                 [EG - ng-class WITH ng-show for DIV] Exactly Equal to 5!!
+                             </div>
+                             
+                             <div ng-show="newHandle.length > characters">
+                                 [EG - ng-class WITH ng-show for DIV] Greater than 5!!
+                             </div>
+                           
+                        </div>
 
                     </div>
                     <!-- Interpolating it with function/variable -->
-                    <h4> You Entered - {{ lowercaseHandle() }}</h4>
-                    
-                    
-
-                </div>
-
-            </div>
-                <!--Container Ends-->
-            </div>
-
+                    <h4> You Entered - {{ uppercasehandle() }}</h4>
+                  </div>
+            </div>  <!--Container Ends-->
         </body>
     </html>

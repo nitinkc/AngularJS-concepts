@@ -72,18 +72,26 @@ angularApp.controller('myController', ['$scope','$timeout', '$filter','$log', fu
     The watching is within the Angular js context 
     ****************************************************/
     //$timeout should be prefered as it is angularJS tag
-    setTimeout(function(){
+    
+    //settimeout starts a new thread
+    setTimeout(function(){//setTimeout is nortmal javascript function!!
         //$scope.handle = 'newHandle';//The DOM will not update
         // set time out is a new thread. even though it changed the scope, but since it is outside 
-        // Angular JS 
+        // Angular JS it never added into the Digest Loop
         
-        
+        // apply is to the AngularJS context
         $scope.$apply(function(){
-            $scope.handle = 'newHandle';
+            $scope.handle = 'New Handle';
             console.log("Scope Changed");
         });
         
     },3000);
+    
+    /***************************************************************/
+    $scope.newHandle = '';
+     $scope.uppercasehandle = function() {//converting into uppercase
+        return $filter('uppercase')($scope.newHandle);
+    };
     
     $scope.characters = 5;
 }]);
