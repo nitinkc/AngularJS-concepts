@@ -13,7 +13,7 @@ var angularApp = angular.module('angularApp', ['ngMessages','ngResource']);
 angularApp.controller('mainController',  function ($scope,$log, $filter, $resource) {// injecting the two AngJS Services
     
     // *********************** SCOPE TESTING *********************
-    $scope.myName = 'nitin';//Adding a variable to the $scope
+    $scope.myName = 'nitin';//Adding a string  variable to the $scope
     console.log($scope);//Angular js doing dependency injection
     
     var searchPeople = function(firstName, lastName, height, age, occupation){
@@ -32,7 +32,7 @@ angularApp.controller('mainController',  function ($scope,$log, $filter, $resour
     $log.warn("warning");
     $log.debug("debug");
     
-    //*********************** Filter Testing *****************************
+    /*********************** Filter Testing *****************************/
      $scope.name = 'John';
     //using filter service
     $scope.formattedName = $filter('uppercase')($scope.name);
@@ -43,24 +43,49 @@ angularApp.controller('mainController',  function ($scope,$log, $filter, $resour
 
 });
 
-//SECOND WAY OF DEPENDENCY INJECTION
-//Wrapping in the array make is minifucation safe!!
-//Keep the fuinction in the last
-//DO NOT CHANGE THE ORDER in array!!
-angularApp.controller('myController', ['$scope','$timeout', '$filter', function ($scope,$timeTest, $filter) {
+// SECOND WAY OF DEPENDENCY INJECTION
+// Wrapping in the array make is minifucation safe!!
+// Keep the fuinction in the last
+// DO NOT CHANGE THE ORDER in array!!
+angularApp.controller('myController', ['$scope','$timeout', '$filter','$log', function ($scope,$timeTest, $filter, $log) {
     $scope.name = "Interpolation Example";
     
-    //Run this after 3 seconds
-    $timeTest(function(){//timeTest intention Alias of $timeout
+    //Run this after 3 seconds change the text
+    $timeTest(function(){//timeTest is intention Alias of $timeout
         $scope.name = "Changes after 3 seconds!!";
     }, 3000);//IIFE
     
+    /*********** Two Way Data Binding ***************/
     $scope.handle = '';
     
     $scope.lowercaseHandle = function(){
         return $filter('lowercase')($scope.handle);
     }
     
+    /**************** WATHER DEMO ***********************/
+    $scope.$watch('handle',function(newValue, oldValue){
+       $log.info("Value Changed!!");
+        $log.log("Old Value - " + oldValue + " || new-value - " + newValue);
+    });
+    
+    /***************** CAVET ***************************
+    The watching is within the Angular js context 
+    ****************************************************/
+    //$timeout should be prefered as it is angularJS tag
+    setTimeout(function(){
+        //$scope.handle = 'newHandle';//The DOM will not update
+        // set time out is a new thread. even though it changed the scope, but since it is outside 
+        // Angular JS 
+        
+        
+        $scope.$apply(function(){
+            $scope.handle = 'newHandle';
+            console.log("Scope Changed");
+        });
+        
+    },3000);
+    
+    $scope.characters = 5;
 }]);
 
 
