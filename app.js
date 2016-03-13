@@ -4,27 +4,30 @@
 //Here global namespace is same as the String that is searched in html got ng-app tag
 //Inside [] goes the dependent modules, like ngMessages here
 
-var angularApp = angular.module('angularApp', ['ngMessages','ngResource', 'ngRoute']);
+var angularApp = angular.module('angularApp', ['ngMessages'
+                                               ,'ngResource'
+                                               //, 'ngRoute'
+                                              ]);
 
-angularApp.config(function ($routeProvider) {
-    
-    $routeProvider
-    
-    .when('/', {
-        templateUrl: 'index.htm',
-        controller: 'mainController'
-    })
-    
-    .when('/second', {
-        templateUrl: 'pages/second.html',
-        controller: 'secondController'
-    })
-    
-    .when('/first', {
-        templateUrl: 'pages/first.html',
-        controller: 'secondController'
-    })
-});
+//angularApp.config(function ($routeProvider) {
+//    
+//    $routeProvider
+//    
+//    .when('/', {
+//        templateUrl: 'index.htm',
+//        controller: 'mainController'
+//    })
+//    
+//    .when('/second', {
+//        templateUrl: 'pages/second.html',
+//        controller: 'secondController'
+//    })
+//    
+//    .when('/first', {
+//        templateUrl: 'pages/first.html',
+//        controller: 'secondController'
+//    })
+//});
 
 // CONTROLLERS
 //NOT GOOD FOR MINIFICATION
@@ -133,10 +136,10 @@ angularApp.controller('myController', ['$scope','$timeout', '$filter','$log', fu
 
 /*********************************** EXAMPLE OF ROUTE PROVIDER ****************************/
 
-angularApp.controller('firstController',['$scope','$log', function ($scope,$log) {
-    $log.info($location.path());
-}]);
-
-angularApp.controller('secondController',['$scope','$log', function ($scope,$log) {
-    $log.info($location.path());
-}]);
+//angularApp.controller('firstController',['$scope','$log', function ($scope,$log) {
+//    $log.info($location.path());
+//}]);
+//
+//angularApp.controller('secondController',['$scope','$log', function ($scope,$log) {
+//    $log.info($location.path());
+//}]);
