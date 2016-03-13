@@ -6,28 +6,28 @@
 
 var angularApp = angular.module('angularApp', ['ngMessages'
                                                ,'ngResource'
-                                               //, 'ngRoute'
+                                               , 'ngRoute'
                                               ]);
 
-//angularApp.config(function ($routeProvider) {
-//    
-//    $routeProvider
-//    
-//    .when('/', {
-//        templateUrl: 'index.htm',
-//        controller: 'mainController'
-//    })
-//    
-//    .when('/second', {
-//        templateUrl: 'pages/second.html',
-//        controller: 'secondController'
-//    })
-//    
-//    .when('/first', {
-//        templateUrl: 'pages/first.html',
-//        controller: 'secondController'
-//    })
-//});
+angularApp.config(function ($routeProvider) {
+    
+    $routeProvider
+    
+    .when('/', {
+        templateUrl: 'index.htm',
+        controller: 'mainController'
+    })
+    
+    .when('/second', {
+        templateUrl: 'pages/second.html',
+        controller: 'secondController'
+    })
+    
+    .when('/first', {
+        templateUrl: 'pages/first.html',
+        controller: 'firstController'
+    })
+});
 
 // CONTROLLERS
 //NOT GOOD FOR MINIFICATION
@@ -136,10 +136,10 @@ angularApp.controller('myController', ['$scope','$timeout', '$filter','$log', fu
 
 /*********************************** EXAMPLE OF ROUTE PROVIDER ****************************/
 
-//angularApp.controller('firstController',['$scope','$log', function ($scope,$log) {
-//    $log.info($location.path());
-//}]);
-//
-//angularApp.controller('secondController',['$scope','$log', function ($scope,$log) {
-//    $log.info($location.path());
-//}]);
+angularApp.controller('firstController',['$scope','$log', function ($scope,$log) {
+    $log.info($location.path());
+}]);
+
+angularApp.controller('secondController',['$scope','$log', function ($scope,$log) {
+    $log.info($location.path());
+}]);
