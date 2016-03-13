@@ -22,6 +22,8 @@
             <script src="app.js"></script>
             <!-- Resources -->
             <script src="https://code.angularjs.org/1.3.0/angular-resource.min.js"></script>
+            <!-- For Routing -->
+            <script src="//code.angularjs.org/1.3.0-rc.1/angular-route.min.js"></script>
         </head>
         <body>
 
@@ -34,7 +36,12 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                        <!-- FOR SINGLE PAGE APPLICATION-->
+                        <li><a href="#first"><i class="fa fa-home"></i> FIRST</a></li>
+                        <li><a href="#second"><i class="fa fa-home"></i> SECOND</a></li>
+                        
                         <li><a href="app.js"><i class="fa fa-home"></i> See .js File</a></li>
+
                     </ul>
                 </div>
                 </nav>
@@ -72,65 +79,111 @@
 
                     <hr>
                     <h3>The Power of 2 way Data binding </h3>
-                    <div> 
+                    <div>
                         <label>Enter name</label>
                         <!-- Two Way Binding : Binding input ot handle-->
                         <input type="text" ng-model="handle"/>
                      <!-- Interpolating it with function/variable -->
                     <h4> You Entered - {{ lowercaseHandle() }}</h4>
                   </div>
-                    
+
                     <!--  ******************COMMON DIRECTIVES **********************************-->
                     <hr>
-                        
+
                     <h3>Common Directives </h3>
-                    <div> 
+                    <div>
                         <label>Enter some Text</label>
                         <!-- Two Way Binding : Binding input ot handle-->
                         <input type="text" ng-model="newHandle"/>
-                    
+
+                        <!-- Applying Input rules  -->
+                        <h3> Rules</h3>
+                        <ul>
+                          <!-- Looping throught eh list of Rules defined in $scope.rules -->
+                          <li ng-repeat="x in rules">
+                            {{x.rulename}};
+                          </li>
+                        </ul>
+
                         <!-- Error Checking ng-if testing  if the number of characters are less than 5   -->
                          <div class="alert alert-warning" ng-if="newHandle.length !== characters">
                             [EG - ng-if] -Must be at max 5 characters !!
                         </div>
-                        
+
                         <!--   NG-SHOWdoes not remove from DOM, but hides          -->
                          <div class="alert alert-warning" ng-show="newHandle.length !== characters">
                            [EG - ng-show] Must be at max 5 characters!!
                         </div>
-                        
+
                         <!--   NG-HIDE does not remove from DOM, but hides          -->
                          <div class="alert alert-success" ng-hide="newHandle.length === characters">
                            [EG - ng-hide] It is 5 charactesr long!!
                         </div>
-                        
+
                           <!--   All in one Line using ng-class :
                                 Applying a class according to a conditiona dn Displaying as div accordingly
                             -->
-                         <div class="alert" ng-class="{'alert-info' : newHandle.length < characters, 
-                                                      'alert-danger' : newHandle.length > characters, 
-                                                      'alert-success' : newHandle.length === characters}" 
+                         <div class="alert" ng-class="{'alert-info' : newHandle.length < characters,
+                                                      'alert-danger' : newHandle.length > characters,
+                                                      'alert-success' : newHandle.length === characters}"
                               ng-show="newHandle.length !== characters">
-                             
+
                             <!--   Show a different message ONLE ONE DIV WILL SHOW-->
                              <div ng-show="newHandle.length < characters">
                                  [EG - ng-class WITH ng-show for DIV] Less than 5 characters!!
                              </div>
-                             
+
                              <div ng-show="newHandle.length === characters">
                                  [EG - ng-class WITH ng-show for DIV] Exactly Equal to 5!!
                              </div>
-                             
+
                              <div ng-show="newHandle.length > characters">
                                  [EG - ng-class WITH ng-show for DIV] Greater than 5!!
                              </div>
-                           
+
                         </div>
 
                     </div>
                     <!-- Interpolating it with function/variable -->
-                    <h4> You Entered - {{ uppercasehandle() }}</h4>
+
+                    <!--  Waits for the Slow Connections until Angular JS is available -->
+                    <h4 ng-cloak> You Entered - {{ uppercasehandle() }}</h4>
+
+                    <hr>
+
+                    <!--   Creating a 4-4-4 COLUMN FOR THE USE -->
+                     <div class="row">
+                        <div class="col-md-4">
+                            This area can also be used
+                        </div>
+                          <div class="col-md-4">
+                           <input type="button b" class="btn btn-primary btn-lg btn-block" value="CLICK" ng-click="methodToCallOnClick()">
+                      </div>
+                      <div class="col-md-4">
+                          <img src="http://cdnvideo.dolimg.com/cdn_assets/bfb77429ddcf6a380fa57685b6278f2c202fe83d.jpg" style="width:100%">
+                       </div>
+                   </div>
                   </div>
-            </div>  <!--Container Ends-->
+                
+ <!-------------------------------------------------------------------------------------------------
+            DEMONSTRATION OF A SINGLE PAGE APPLICATION USING FRAGMENT specifier
+------------------------------------------------------------------------------------------------------->
+                <div class="row">
+                    <div ng-view class="col-md-12">
+
+                    </div>
+                </div>
+
+
+<!-------------------------------------------------------------------------------------------------
+                                    FOOTER
+------------------------------------------------------------------------------------------------------->
+                <div class="row">
+                    <div class="col-md-12">
+                        FOOTER
+		          </div>
+	           </div>
+        <!--Container Ends-->
+            </div>
         </body>
     </html>
