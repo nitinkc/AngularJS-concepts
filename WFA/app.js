@@ -33,8 +33,10 @@ myFirstApp.controller('homeController',['$scope','cityService','$log', function 
     
 }]);
 
-myFirstApp.controller('weatherController',['$scope', 'cityService' , function ($scope, cityService){
+myFirstApp.controller('weatherController',['$scope', 'cityService', '$resource' , function ($scope, cityService,$resource){
     $scope.city = cityService.city;
+    
+    $scope.weatherAPI = $resource()
 }]);
 
 //Service
