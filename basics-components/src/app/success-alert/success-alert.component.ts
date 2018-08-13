@@ -12,6 +12,10 @@ import { Component } from "@angular/core";
 export class SuccessAlertComponent{
 
     concept: String = "String interpolation";
-    int_vlaue: number = 10;
+    int_value: number = 10;
+
+    getValuesFromAMethod(){
+        return 'Value returned from a method'
+    }
     
 }
