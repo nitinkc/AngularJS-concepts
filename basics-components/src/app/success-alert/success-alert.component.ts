@@ -10,5 +10,8 @@ import { Component } from "@angular/core";
     styleUrls: ['./success-alert.component.css']
 })
 export class SuccessAlertComponent{
+
+    concept: String = "String interpolation";
+    int_vlaue: number = 10;
     
 }
