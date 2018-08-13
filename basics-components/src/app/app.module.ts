@@ -6,14 +6,21 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
+
+/* Assignment Related */
+//Added by ng cli tool
 import { WarningAlertComponent } from './warning-alert/warning-alert.component';
+import { SuccessAlertComponent } from './success-alert/success-alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerComponent,
     ServersComponent,
-    WarningAlertComponent
+    //added by ng cli tool.
+    WarningAlertComponent,
+    //Manually added for success-component
+    SuccessAlertComponent
   ],
   imports: [
     BrowserModule,
